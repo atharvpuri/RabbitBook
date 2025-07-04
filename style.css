@@ -1,0 +1,556 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  font-family: 'JetBrains Mono', monospace;
+  background-color: #0d1117;
+  color: #c9d1d9;
+  overflow: hidden;
+}
+
+/* ========== SCREENS ========== */
+.screen {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+.screen.active {
+  display: flex;
+}
+
+/* ========== INTRO SCREEN ========== */
+#intro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #0d1117;
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  animation: fadeOut 2.2s ease-out 1 forwards;
+  animation-delay: 1.8s;
+}
+
+.intro-center {
+  text-align: center;
+  opacity: 0;
+  animation: fadeIn 1.2s ease-in forwards;
+}
+
+.intro-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 20px;
+  box-shadow: 0 0 20px #00eaff88;
+  margin-bottom: 20px;
+}
+
+.intro-title {
+  color: #00eaff;
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 1.5px;
+  margin-bottom: 10px;
+}
+
+.intro-sub {
+  color: #aaa;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+@keyframes fadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+  to { opacity: 0; visibility: hidden; }
+}
+
+/* ========== PROJECT SETUP ========== */
+#project-setup {
+  background: linear-gradient(145deg, #0d1117, #161b22);
+  justify-content: center;
+  align-items: center;
+}
+
+.setup-box {
+  background: #161b22;
+  padding: 40px;
+  border-radius: 14px;
+  box-shadow: 0 0 20px #00eaff33;
+  width: 380px;
+  text-align: center;
+  animation: fadeIn 1s ease forwards;
+}
+
+.setup-box h2 {
+  color: #00eaff;
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+
+.setup-box input {
+  padding: 12px;
+  width: 100%;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 8px;
+  background: #0d1117;
+  color: #fff;
+  margin-bottom: 24px;
+  outline: none;
+  box-shadow: inset 0 0 5px #00eaff22;
+}
+
+.setup-box h3 {
+  color: #ccc;
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+.framework-options {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.framework-card {
+  flex: 1;
+  background: #1c232a;
+  color: #00eaff;
+  padding: 12px;
+  margin: 0 5px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  transition: 0.2s ease;
+  border: 2px solid transparent;
+}
+
+.framework-card:hover {
+  background: #2a323f;
+  border-color: #00eaff55;
+}
+
+.framework-card.active {
+  border-color: #00eaff;
+  background: #0d1117;
+  box-shadow: 0 0 10px #00ffff44;
+}
+
+#launchIDEBtn {
+  width: 100%;
+  background: #00bfff;
+  color: #000;
+  font-weight: bold;
+  border: none;
+  padding: 12px;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+#launchIDEBtn:hover {
+  background: #00eaff;
+  box-shadow: 0 0 12px #00ffff77;
+}
+
+/* ========== IDE LAYOUT ========== */
+#ide-wrapper {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* SIDEBAR */
+#sidebar {
+  width: 260px;
+  background: #161b22;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid #1e2228;
+}
+
+.sidebar-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px #00eaff88;
+  margin-right: 10px;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.logo-area h1 {
+  color: #00bfff;
+  font-size: 1.4rem;
+}
+
+.explorer h3 {
+  color: #00eaff;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+}
+
+.file-tree {
+  list-style: none;
+}
+
+.file-tree li {
+  padding: 8px 12px;
+  background: #1c232a;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: 0.2s ease;
+  user-select: none;
+}
+
+.file-tree li:hover {
+  background: #2a323f;
+}
+
+.file-tree li.active {
+  background: #0d1117;
+  border-left: 3px solid #00eaff;
+  box-shadow: inset 0 0 10px #00ffff33;
+}
+
+/* TOOLS */
+.tools {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.tool-btn {
+  padding: 8px;
+  background: #1c232a;
+  color: #00eaff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.tool-btn:hover {
+  background: #2a323f;
+}
+
+/* MAIN PANEL */
+#main-panel {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* TOOLBAR */
+#toolbar {
+  background: #1b212a;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #2a323f;
+}
+
+.project-title,
+.framework-name {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn {
+  padding: 8px 14px;
+  background: #00bfff;
+  border: none;
+  border-radius: 6px;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn:hover {
+  background: #00eaff;
+  box-shadow: 0 0 12px #00ffff77;
+}
+
+.btn.small {
+  padding: 6px 10px;
+  font-size: 0.85rem;
+}
+
+/* TABS */
+#tab-bar {
+  display: flex;
+  background: #151b24;
+  padding: 10px 15px;
+  border-bottom: 1px solid #1f2733;
+}
+
+.tab {
+  padding: 8px 18px;
+  margin-right: 10px;
+  background: #1c232e;
+  border-radius: 6px 6px 0 0;
+  color: #aaa;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.tab:hover {
+  background: #2a323f;
+  color: #00eaff;
+}
+
+.tab.active {
+  background: #0d1117;
+  color: #00eaff;
+  box-shadow: inset 0 -3px 10px #00ffff44;
+}
+
+/* WORK AREA SPLIT */
+#work-area {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+/* CODE EDITOR */
+#editor-pane {
+  flex: 1;
+  padding: 20px;
+  background: #0d1117;
+  overflow: auto;
+}
+
+#codeArea {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  resize: none;
+  background: transparent;
+  color: #eee;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* TERMINAL */
+#terminal-pane {
+  width: 40%;
+  max-width: 800px;
+  background: #121820;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #1f2733;
+  overflow: hidden;
+}
+
+.terminal-header {
+  background: #1c232e;
+  padding: 10px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  color: #00eaff;
+  border-bottom: 1px solid #1f2733;
+}
+
+#terminalOutput {
+  flex: 1;
+  padding: 16px;
+  font-size: 13px;
+  color: #00eaff;
+  background: #0d1117;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+
+/* SPLITTER */
+#splitter {
+  width: 5px;
+  background: #1c232e;
+  cursor: col-resize;
+  transition: background 0.2s ease;
+}
+
+#splitter:hover {
+  background: #00bfff;
+}
+
+/* SCROLLBARS */
+#terminalOutput::-webkit-scrollbar,
+#editor-pane::-webkit-scrollbar {
+  width: 6px;
+}
+
+#terminalOutput::-webkit-scrollbar-thumb,
+#editor-pane::-webkit-scrollbar-thumb {
+  background: #00eaff;
+  border-radius: 8px;
+}
+
+/* TRANSITIONS */
+button,
+.file,
+.tab,
+.tool-btn {
+  transition: all 0.2s ease;
+}
+
+.file:active,
+.tab:active,
+.btn:active {
+  transform: scale(0.96);
+}
+/* ==============================
+   MOBILE RESPONSIVENESS
+   ============================== */
+@media (max-width: 768px) {
+  /* General layout */
+  body, html {
+    overflow: auto;
+  }
+
+  /* INTRO SCREEN */
+  #intro {
+    flex-direction: column;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .intro-logo {
+    width: 70px;
+    height: 70px;
+  }
+
+  .intro-title {
+    font-size: 1.5rem;
+  }
+
+  .intro-sub {
+    font-size: 0.8rem;
+  }
+
+  /* PROJECT SETUP SCREEN */
+  .setup-box {
+    width: 90%;
+    padding: 20px;
+  }
+
+  .framework-options {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .framework-card {
+    margin: 5px 0;
+    font-size: 0.9rem;
+  }
+
+  #launchIDEBtn {
+    font-size: 0.95rem;
+  }
+
+  /* IDE WRAPPER */
+  #ide-wrapper {
+    flex-direction: column;
+    height: auto;
+  }
+
+  #sidebar {
+    width: 100%;
+    min-width: unset;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 10px;
+    border-right: none;
+    border-bottom: 1px solid #1e2228;
+  }
+
+  .logo-area {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .explorer {
+    display: none;
+  }
+
+  .tools {
+    display: none;
+  }
+
+  #main-panel {
+    height: auto;
+    flex: 1;
+  }
+
+  #toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  #tab-bar {
+    flex-wrap: wrap;
+  }
+
+  #work-area {
+    flex-direction: column;
+  }
+
+  #editor-pane,
+  #terminal-pane {
+    width: 100% !important;
+    height: 50vh;
+  }
+
+  #splitter {
+    display: none;
+  }
+
+  #terminalOutput {
+    font-size: 12px;
+  }
+
+  .tab {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 6px 10px;
+  }
+}

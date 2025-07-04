@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RabbitBook IDE</title>
+
+  <!-- 🧠 PYODIDE -->
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js"></script>
+
+  <!-- 👕 STYLES -->
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- 🌠 INTRO SCREEN -->
+  <div id="intro" class="screen">
+    <div class="intro-center">
+      <img src="assets/rabbit.jpg" alt="Rabbit Logo" class="intro-logo" />
+      <h1 class="intro-title">RabbitBook IDE</h1>
+      <p class="intro-sub">Launching your dev environment...</p>
+    </div>
+  </div>
+
+  <!-- ⚙️ PROJECT SETUP SCREEN -->
+  <div id="project-setup" class="screen">
+    <div class="setup-box">
+      <h2>New Project</h2>
+      <input type="text" id="projectName" placeholder="Enter project name..." />
+      <h3>Select Python Framework:</h3>
+      <div class="framework-options">
+        <div class="framework-card" data-framework="Flask">Flask</div>
+        <div class="framework-card" data-framework="FastAPI">FastAPI</div>
+        <div class="framework-card" data-framework="None">None</div>
+      </div>
+      <button id="launchIDEBtn">🚀 Launch IDE</button>
+    </div>
+  </div>
+
+  <!-- 🧠 FULL IDE WRAPPER -->
+  <div id="ide-wrapper" class="screen">
+    <!-- Sidebar -->
+    <aside id="sidebar">
+      <div class="logo-area">
+        <img src="assets/rabbit.jpg" class="sidebar-logo" />
+        <h1>RabbitBook</h1>
+      </div>
+
+      <div class="explorer">
+        <h3>EXPLORER</h3>
+        <ul class="file-tree">
+          <li class="file active" data-file="main.py">main.py</li>
+          <li class="file" data-file="routes.py">routes.py</li>
+          <li class="file" data-file="config.yaml">config.yaml</li>
+          <li class="file" data-file="README.md">README.md</li>
+        </ul>
+      </div>
+
+      <div class="tools">
+        <button class="tool-btn">+</button>
+        <button class="tool-btn">⚙</button>
+        <button class="tool-btn">🔍</button>
+      </div>
+    </aside>
+
+    <!-- Main Panel -->
+    <main id="main-panel">
+      <!-- Toolbar -->
+      <header id="toolbar">
+        <div class="project-title">Project: <span id="projectTitle">Untitled</span></div>
+        <div class="framework-name">Framework: <span id="frameworkUsed">None</span></div>
+        <div class="toolbar-actions">
+          <button class="btn run-btn">▶ Run</button>
+          <button class="btn stop-btn">⛔ Stop</button>
+          <button class="btn save-btn">💾 Save</button>
+        </div>
+      </header>
+
+      <!-- Tab Bar -->
+      <nav id="tab-bar">
+        <div class="tab active" data-file="main.py">main.py</div>
+        <div class="tab" data-file="routes.py">routes.py</div>
+        <div class="tab" data-file="README.md">README.md</div>
+      </nav>
+
+      <!-- Work Area -->
+      <section id="work-area">
+        <!-- Editor -->
+        <div id="editor-pane">
+          <textarea id="codeArea">// Your code here...</textarea>
+        </div>
+
+        <!-- Split Bar -->
+        <div id="splitter"></div>
+
+        <!-- Terminal -->
+        <div id="terminal-pane">
+          <div class="terminal-header">
+            <span>Terminal</span>
+            <button id="clearTerminal" class="btn small">🧹 Clear</button>
+          </div>
+          <pre id="terminalOutput"># Terminal Output</pre>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- 👇 Your Script -->
+  <script src="script.js"></script>
+</body>
+</html>
