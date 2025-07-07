@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>RabbitBook IDE</title>
 
-  <!-- 🧠 PYODIDE -->
+ 
   <script src="https://cdn.jsdelivr.net/pyodide/v0.25.1/full/pyodide.js"></script>
 
-  <!-- 👕 STYLES -->
+
   <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- 🌠 INTRO SCREEN -->
+
   <div id="intro" class="screen">
     <div class="intro-center">
       <img src="assets/rabbit.jpg" alt="Rabbit Logo" class="intro-logo" />
@@ -23,7 +23,6 @@
     </div>
   </div>
 
-  <!-- ⚙️ PROJECT SETUP SCREEN -->
   <div id="project-setup" class="screen">
     <div class="setup-box">
       <h2>New Project</h2>
@@ -38,9 +37,9 @@
     </div>
   </div>
 
-  <!-- 🧠 FULL IDE WRAPPER -->
+
   <div id="ide-wrapper" class="screen">
-    <!-- Sidebar -->
+    
     <aside id="sidebar">
       <div class="logo-area">
         <img src="assets/rabbit.jpg" class="sidebar-logo" />
@@ -64,9 +63,9 @@
       </div>
     </aside>
 
-    <!-- Main Panel -->
+
     <main id="main-panel">
-      <!-- Toolbar -->
+    
       <header id="toolbar">
         <div class="project-title">Project: <span id="projectTitle">Untitled</span></div>
         <div class="framework-name">Framework: <span id="frameworkUsed">None</span></div>
@@ -77,24 +76,24 @@
         </div>
       </header>
 
-      <!-- Tab Bar -->
+     
       <nav id="tab-bar">
         <div class="tab active" data-file="main.py">main.py</div>
         <div class="tab" data-file="routes.py">routes.py</div>
         <div class="tab" data-file="README.md">README.md</div>
       </nav>
 
-      <!-- Work Area -->
+    
       <section id="work-area">
-        <!-- Editor -->
+     
         <div id="editor-pane">
           <textarea id="codeArea">// Your code here...</textarea>
         </div>
 
-        <!-- Split Bar -->
+
         <div id="splitter"></div>
 
-        <!-- Terminal -->
+    \
         <div id="terminal-pane">
           <div class="terminal-header">
             <span>Terminal</span>
@@ -106,7 +105,7 @@
     </main>
   </div>
 
-  <!-- 👇 Your Script -->
+ 
   <script src="script.js"></script>
 </body>
 </html>
