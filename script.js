@@ -1,6 +1,4 @@
-// ================================
-// 1. ELEMENT SELECTORS
-// ================================
+
 const screens = {
   intro: document.getElementById("intro"),
   setup: document.getElementById("project-setup"),
@@ -29,9 +27,7 @@ const editorPane = document.getElementById("editor-pane");
 const terminalPane = document.getElementById("terminal-pane");
 const splitter = document.getElementById("splitter");
 
-// ================================
-// 2. APP STATE
-// ================================
+
 let selectedFramework = null;
 let selectedFile = "main.py";
 let pyodide = null;
@@ -43,9 +39,7 @@ const files = {
   "config.yaml": `theme: dark\nautosave: true\nframework: flask`
 };
 
-// ================================
-// 3. INIT + SCREEN FLOW
-// ================================
+
 window.addEventListener("DOMContentLoaded", async () => {
   showScreen("intro");
 
@@ -61,9 +55,7 @@ function showScreen(key) {
   if (screens[key]) screens[key].style.display = "flex";
 }
 
-// ================================
-// 4. FRAMEWORK SELECTION
-// ================================
+
 frameworkCards.forEach(card => {
   card.addEventListener("click", () => {
     frameworkCards.forEach(c => c.classList.remove("active"));
@@ -72,9 +64,7 @@ frameworkCards.forEach(card => {
   });
 });
 
-// ================================
-// 5. LAUNCH IDE
-// ================================
+
 launchBtn.addEventListener("click", () => {
   const projName = projectNameInput.value.trim();
   if (!projName || !selectedFramework) {
@@ -89,9 +79,7 @@ launchBtn.addEventListener("click", () => {
   loadFile("main.py");
 });
 
-// ================================
-// 6. FILE/TAB SWITCHING
-// ================================
+
 function loadFile(filename) {
   selectedFile = filename;
   codeArea.value = files[filename] || "";
@@ -113,9 +101,7 @@ fileItems.forEach(item => {
   });
 });
 
-// ================================
-// 7. SAVE FILE
-// ================================
+
 function saveFile() {
   files[selectedFile] = codeArea.value;
   logTerminal(`💾 Saved "${selectedFile}"`);
@@ -123,9 +109,7 @@ function saveFile() {
 
 saveBtn.addEventListener("click", saveFile);
 
-// ================================
-// 8. RUN CODE via Pyodide
-// ================================
+
 runBtn.addEventListener("click", async () => {
   const code = codeArea.value.trim();
   if (!code) return logTerminal("⚠️ No code to run.");
@@ -151,23 +135,16 @@ output = sys.stdout.getvalue()
 });
 
 
-// ================================
-// 9. STOP + CLEAR TERMINAL
-// ================================
+
 stopBtn.addEventListener("click", () => logTerminal("⛔ Execution stopped."));
 clearTerminalBtn.addEventListener("click", () => terminalOutput.textContent = "");
 
-// ================================
-// 10. TERMINAL OUTPUT LOGGER
-// ================================
 function logTerminal(msg) {
   terminalOutput.textContent += `\n${msg}`;
   terminalOutput.scrollTop = terminalOutput.scrollHeight;
 }
 
-// ================================
-// 11. SPLITTER DRAG LOGIC
-// ================================
+
 let isDragging = false;
 
 splitter.addEventListener("mousedown", () => {
